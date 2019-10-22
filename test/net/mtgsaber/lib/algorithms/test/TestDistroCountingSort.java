@@ -8,6 +8,24 @@ import java.util.Scanner;
 
 public class TestDistroCountingSort {
     public static void main(String[] args) {
+        System.out.println("=== Begin Test 1 ===");
+        if (test1()) {
+            System.out.println("=== Test 1 Passed ===");
+        } else {
+            System.out.println("=== Test 1 Failed ===");
+        }
+
+        System.out.println("=== Begin Test 2 ===");
+
+        /*
+        System.out.println("Sorted array: [");
+        for (int i = 0; i < arrSize-1; i++)
+            System.out.print("" + testArr[i] + ", ");
+        System.out.println("" + testArr[arrSize - 1] + "]");
+        */
+    }
+
+    private static boolean test1() {
         final Random rng = new Random();
         final Scanner sc = new Scanner(System.in);
 
@@ -44,13 +62,10 @@ public class TestDistroCountingSort {
             if (testArr[i + 1] < testArr[i])
                 sorted = false;
 
-        System.out.println("Sorted? " + sorted);
+        return sorted;
+    }
 
-        /*
-        System.out.println("Sorted array: [");
-        for (int i = 0; i < arrSize-1; i++)
-            System.out.print("" + testArr[i] + ", ");
-        System.out.println("" + testArr[arrSize - 1] + "]");
-        */
+    private static boolean test2() {
+        return false;
     }
 }
