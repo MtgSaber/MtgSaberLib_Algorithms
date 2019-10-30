@@ -27,7 +27,7 @@ public class Arrays {
 
         // locate minimum
         for (T t : source) {
-            if (comparator.compare(t, min) < 0)
+            if (comparator.compare(t, min) < 0) // if a < b, neg. if a > b, pos. if a == b, 0.
                 min = t;
             else if (comparator.compare(max, t) < 0)
                 max = t;
@@ -45,11 +45,10 @@ public class Arrays {
         if (nonDecreasing)
             for (int i = 1; i < distros.length; i++)
                 distros[i] += distros[i - 1];
-        else {
-            distros[0] = distros.length;
-            for (int i = 1; i < distros.length; i++)
-                distros[i] = distros[i - 1] - distros[i];
-        }
+        else
+            for (int i = distros.length - 2; i > -1; i--)
+                distros[i] += distros[i + 1];
+
 
         // copy into temporary array.
         T[] temp = (T[]) new Object[source.length];
@@ -57,7 +56,7 @@ public class Arrays {
             temp[i] = source[i];
 
         // place elements into the next right-most position in their class's partition.
-        for (int i = source.length - 1; i != -1; i--)
+        for (int i = source.length - 1; i > -1; i--)
             source[ --distros[ comparator.compare(temp[i], min) ] ] = temp[i];
     }
 

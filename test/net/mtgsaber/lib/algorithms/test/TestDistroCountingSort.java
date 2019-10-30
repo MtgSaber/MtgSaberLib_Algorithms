@@ -16,6 +16,10 @@ public class TestDistroCountingSort {
         }
 
         System.out.println("=== Begin Test 2 ===");
+        if (test2())
+            System.out.println("=== Test 2 Passed ===");
+        else
+            System.out.println("=== Test 2 Failed ===");
 
         /*
         System.out.println("Sorted array: [");
@@ -51,21 +55,35 @@ public class TestDistroCountingSort {
 
         long startTime, endTime;
 
-        Comparator<Integer> comparator = (i1, i2) -> i1 - i2;
+        Comparator<Integer> comparator = (o1, o2) -> o1 - o2;
         startTime = System.currentTimeMillis();
         Arrays.distCountingSort(testArr, comparator, true);
         endTime = System.currentTimeMillis();
         System.out.println("Finished in " + (endTime - startTime) + "ms.");
 
+        return isSorted(testArr, comparator, true);
+
+    }
+
+    private static <T> boolean isSorted(T[] source, Comparator<T> comparator, boolean nonDecreasing) {
         boolean sorted = true;
-        for (int i = 0; i < arrSize - 1; i++)
-            if (testArr[i + 1] < testArr[i])
+        for (int i = 0; i < source.length - 1; i++) {
+            if (nonDecreasing && comparator.compare(source[i], source[i + 1]) > 0)
                 sorted = false;
+            else if (!nonDecreasing && comparator.compare(source[i], source[i + 1]) < 0)
+                sorted = false;
+        }
 
         return sorted;
     }
 
+
     private static boolean test2() {
-        return false;
+        Integer[] testArr = new Integer[] {
+                1, 2, 3, 4, 5, 6, 32, 33, 34, 35, 36, 45, 46, 47, 48, 999
+        };
+        Comparator<Integer> comparator = (o1, o2) -> o1 - o2;
+        Arrays.distCountingSort(testArr, comparator, false);
+        return isSorted(testArr, comparator, false);
     }
 }
