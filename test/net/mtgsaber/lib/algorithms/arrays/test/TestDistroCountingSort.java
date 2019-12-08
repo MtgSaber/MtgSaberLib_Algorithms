@@ -1,7 +1,8 @@
-package net.mtgsaber.lib.algorithms.test;
+package net.mtgsaber.lib.algorithms.arrays.test;
 
 import net.mtgsaber.lib.algorithms.arrays.Arrays;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
