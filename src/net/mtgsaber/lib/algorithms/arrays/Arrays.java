@@ -25,7 +25,7 @@ public class Arrays {
      */
     public static <T> void distCountingSort(T[] source, Comparator<T> comparator, boolean nonDecreasing) {
         // arrays of less than two elements are always sorted.
-        if (source.length < 2)
+        if (source == null || source.length < 2)
             return;
 
         T min = source[0], max = source[0];
