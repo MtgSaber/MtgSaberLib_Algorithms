@@ -7,6 +7,5 @@ public interface Graph<E, V> {
     V[] getVertices();
     Edge<E, V>[] getIncidentEdges(V vertex);
     V[] getAdjacentVertices(V vertex);
-    Pair<V, V> getVertices(Edge<E, V> edge);
     String toString();
 }

@@ -25,9 +25,4 @@ public class GraphAdjacencyList<E, V> implements Graph<E, V> {
     public V[] getAdjacentVertices(V vertex) {
         return null;
     }
-
-    @Override
-    public Pair<V, V> getVertices(Edge<E, V> edge) {
-        return null;
-    }
 }

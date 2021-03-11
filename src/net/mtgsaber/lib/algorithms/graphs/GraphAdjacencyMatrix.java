@@ -80,27 +80,36 @@ public class GraphAdjacencyMatrix <E, V> implements Graph<E, V> {
      */
     @Override
     public Edge<E, V>[] getIncidentEdges(V vertex) {
-        List<Edge<E, V>> edges = new ArrayList<>(VERTICES.size());
-        return null;
+        Set<Edge<E, V>> edges = new HashSet<>(VERTICES.size() * 2);
+        final int index = VERTEX_TO_INDEX.get(vertex);
+        ArrayList<Edge<E, V>> row = MATRIX.get(index);
+        for (int i = 0; i < VERTICES.size(); i++) { //TODO: CHECK FOR NULLS!!!!
+            edges.add(row.get(i));
+            edges.add(MATRIX.get(index).get(i));
+        }
+        edges.remove(null);
+        return Arrays.copyOf(((Edge<E, V>[]) edges.toArray()), edges.size());
     }
 
     /**
-     * TODO: NYI
+     * TODO: document
      * @param vertex
      * @return
      */
     @Override
     public V[] getAdjacentVertices(V vertex) {
-        return null;
-    }
-
-    /**
-     * TODO: NYI
-     * @param edge
-     * @return
-     */
-    @Override
-    public Pair<V, V> getVertices(Edge<E, V> edge) {
-        return null;
+        Set<V> vertices = new HashSet<>(VERTICES.size());
+        final int index = VERTEX_TO_INDEX.get(vertex);
+        ArrayList<Edge<E, V>> row = MATRIX.get(index);
+        for (int i = 0; i < VERTICES.size(); i++) {
+            Edge<E, V> edge = row.get(i);
+            if (edge != null)
+                vertices.add(edge.getIncidentVertices().VAL);
+            edge = MATRIX.get(i).get(index);
+            if (edge != null)
+                vertices.add(edge.getIncidentVertices().KEY);
+        }
+        vertices.remove(null);
+        return Arrays.copyOf(((V[]) vertices.toArray()), vertices.size());
     }
 }
