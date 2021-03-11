@@ -2,10 +2,11 @@ package net.mtgsaber.lib.algorithms.graphs;
 
 import net.mtgsaber.lib.algorithms.Pair;
 
-public interface Graph<V, E> {
-    E[] getEdges();
+public interface Graph<E, V> {
+    Edge<E, V>[] getEdges();
     V[] getVertices();
-    E[] getEdges(V vertex);
-    Pair<V, V> getVertices(E edge);
+    Edge<E, V>[] getIncidentEdges(V vertex);
+    V[] getAdjacentVertices(V vertex);
+    Pair<V, V> getVertices(Edge<E, V> edge);
     String toString();
 }

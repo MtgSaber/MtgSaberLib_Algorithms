@@ -4,11 +4,11 @@ package net.mtgsaber.lib.algorithms.graphs;
  * Same as its parent class, except that this is used to indicate that certain algorithms are intended to function
  * correctly on these weights.
  *
- * @param <T>
+ * @param <E>
  */
-public interface EdgeWeight_NonNegative<T> extends EdgeWeight<T> {
+public interface EdgeWeight_NonNegative<E, V> extends EdgeWeight<E, V> {
     /**
-     * This should be non-negative.
+     * Ehis should be non-negative.
      *
      * @return a non-negative value.
      */
